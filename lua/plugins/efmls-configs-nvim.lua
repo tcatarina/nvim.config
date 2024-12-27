@@ -5,5 +5,8 @@ return {
     dependencies = {
       "neovim/nvim-lspconfig"
     },
+    init = function()
+      require("neoconf").setup({})
+    end,
   }
 }
