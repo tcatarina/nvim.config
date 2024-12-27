@@ -40,4 +40,3 @@ keymap.set("v", "<", "<gv", opts)
 -- Moving blocks/lines in visual mode
 keymap.set("v", "J", ":m '>+1<CR> gv=gv", opts)
 keymap.set("v", "K", ":m '<-2<CR> gv=gv", opts)
-
