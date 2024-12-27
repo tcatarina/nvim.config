@@ -18,7 +18,7 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>d", ":Lspsaga show_cursor_diagnostics<CR>", opts)
 	keymap.set("n", "<leader>pd", ":Lspsaga diagnostic_jump_prev<CR>", opts)
 	keymap.set("n", "<leader>nd", ":Lspsaga diagnostic_jump_next<CR>", opts)
-	keymap.set("n", "K", ":Lspsaga hove_doc<CR>", opts)
+	keymap.set("n", "K", ":Lspsaga hover_doc<CR>", opts)
 end
 
 language_server.default_setup = function(server_name)
