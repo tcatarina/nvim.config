@@ -1,5 +1,7 @@
 local language_server = {}
 
+-- local mason_registry = require("mason-registry")
+
 local on_attach = function(client, bufnr)
 	local opts = {
 		noremap = true,
@@ -32,6 +34,8 @@ language_server.efm = function()
 		on_attach = on_attach,
 		filetypes = {
 			"lua",
+			"vue",
+			"javascript",
 		},
 		init_options = {
 			documentFormatting = true,
@@ -47,10 +51,48 @@ language_server.efm = function()
 					require("efmls-configs.linters.luacheck"),
 					require("efmls-configs.formatters.stylua"),
 				},
+        vue = {
+          require("efmls-configs.linters.eslint_d"),
+					require("efmls-configs.formatters.prettier"),
+        }
 			},
 		},
 	})
 end
+
+language_server.volar = function()
+	require("lspconfig").volar.setup({
+		on_attach = on_attach,
+		filetypes = { "vue", "javascript" },
+    init_options = {
+      vue = {
+        hybridMode = false,
+      }
+    }
+	})
+end
+
+-- Only enable this if your VUE project uses typescript
+-- language_server.ts_ls = function()
+-- 	require("lspconfig").ts_ls.setup({
+-- 		on_attach = on_attach,
+-- 		init_options = {
+-- 			plugins = {
+-- 				{
+-- 					name = "@vue/typescript-plugin",
+-- 					location = vim.fn.stdpath("data")
+-- 						.. "/mason/packages/vue-language-server/node_modules/@vue/typescript-plugin",
+-- 					languages = { "javascript", "typescript", "vue" },
+-- 				},
+-- 			},
+-- 		},
+-- 		filetypes = {
+-- 			"javascript",
+-- 			"typescript",
+-- 			"vue",
+-- 		},
+-- 	})
+-- end
 
 language_server.format_on_save = function()
 	local lsp_fmt_group = vim.api.nvim_create_augroup("LspFormattingGroup", {})
