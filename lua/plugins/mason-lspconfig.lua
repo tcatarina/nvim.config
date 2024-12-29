@@ -21,6 +21,8 @@ local language_server = require("plugin_settings.language_server")
 				-- custom settings for specific language servers
 				["efm"] = language_server.efm,
 
+				["volar"] = language_server.volar,
+
 				-- format on save
 				language_server.format_on_save(),
 			},
