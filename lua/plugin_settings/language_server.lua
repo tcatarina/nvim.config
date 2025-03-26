@@ -85,7 +85,7 @@ language_server.eslint = function()
 				},
 			},
 			-- Specify the global config path
-			nodePath = "",
+			nodePath = "~/.nvm/versions/node/v20.18.3/bin/node",
 			workingDirectory = {
 				mode = "location",
 			},
@@ -131,15 +131,5 @@ end
 -- 		},
 -- 	})
 -- end
-
-language_server.format_on_save = function()
-	local lsp_fmt_group = vim.api.nvim_create_augroup("LspFormattingGroup", {})
-	vim.api.nvim_create_autocmd("BufWritePost", {
-		group = lsp_fmt_group,
-		callback = function()
-			vim.lsp.buf.format()
-		end,
-	})
-end
 
 return language_server
