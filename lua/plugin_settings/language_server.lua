@@ -1,5 +1,7 @@
 local language_server = {}
 
+local capabilities = require("blink.cmp").get_lsp_capabilities()
+
 local on_attach = function(client, bufnr)
 	local opts = {
 		noremap = true,
@@ -24,12 +26,14 @@ end
 language_server.default_setup = function(server_name)
 	require("lspconfig")[server_name].setup({
 		on_attach = on_attach,
+		capabilities = capabilities,
 	})
 end
 
 language_server.volar = function()
 	require("lspconfig").volar.setup({
 		on_attach = on_attach,
+		capabilities = capabilities,
 		filetypes = { "vue", "javascript" },
 		init_options = {
 			vue = {
@@ -48,7 +52,7 @@ language_server.eslint = function()
 
 	lspconfig.eslint.setup({
 		cmd = { "vscode-eslint-language-server", "--stdio" },
-
+		capabilities = capabilities,
 		filetypes = {
 			"javascript",
 			"javascriptreact",
