@@ -2,6 +2,8 @@ local language_server = {}
 
 local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+local is_vue_project = require("util.helper").is_vue_project()
+
 local on_attach = function(client, bufnr)
 	local opts = {
 		noremap = true,
@@ -31,13 +33,53 @@ language_server.default_setup = function(server_name)
 end
 
 language_server.volar = function()
+	if not is_vue_project then
+		return
+	end
+
 	require("lspconfig").volar.setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
-		filetypes = { "vue", "javascript" },
+		filetypes = {
+			"vue",
+			"javascript",
+		},
 		init_options = {
 			vue = {
 				hybridMode = false,
+			},
+		},
+	})
+end
+
+language_server.vtsls = function()
+	if is_vue_project then
+		return
+	end
+
+	require("lspconfig").vtsls.setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+		filetypes = {
+			"typescript",
+			"javascript",
+			"javascriptreact",
+			"typescriptreact",
+			"tsx",
+			"jsx",
+		},
+		init_options = {
+			typescript = {
+				tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
+			},
+			preferences = {
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayEnumMemberValueHints = true,
 			},
 		},
 	})
@@ -113,27 +155,5 @@ language_server.eslint = function()
 		end,
 	})
 end
-
--- Only enable this if your VUE project uses typescript
--- language_server.ts_ls = function()
--- 	require("lspconfig").ts_ls.setup({
--- 		on_attach = on_attach,
--- 		init_options = {
--- 			plugins = {
--- 				{
--- 					name = "@vue/typescript-plugin",
--- 					location = vim.fn.stdpath("data")
--- 						.. "/mason/packages/vue-language-server/node_modules/@vue/typescript-plugin",
--- 					languages = { "javascript", "typescript", "vue" },
--- 				},
--- 			},
--- 		},
--- 		filetypes = {
--- 			"javascript",
--- 			"typescript",
--- 			"vue",
--- 		},
--- 	})
--- end
 
 return language_server
