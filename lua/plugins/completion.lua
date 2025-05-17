@@ -25,6 +25,14 @@ return {
 					"path",
 					"snippets",
 					"buffer",
+					"vimtex",
+				},
+				providers = {
+					vimtex = {
+						name = "vimtex",
+						module = "blink.compat.source",
+						score_offset = 100,
+					},
 				},
 			},
 			fuzzy = {
