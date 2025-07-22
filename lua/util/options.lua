@@ -4,6 +4,9 @@ local opt = vim.opt
 -- Set lines to be relative to the cursor
 opt.relativenumber = true
 
+-- Autoread the file
+opt.autoread = true
+
 -- Show the line number where the cursor is
 opt.number = true
 
@@ -35,7 +38,7 @@ opt.ignorecase = true
 opt.termguicolors = true
 
 -- Creates a visual column
-opt.colorcolumn = '100'
+opt.colorcolumn = "100"
 
 -- Keeps the sign column visible
 opt.signcolumn = "yes"
@@ -77,10 +80,10 @@ opt.splitbelow = true
 opt.autochdir = false
 
 -- Enable mouse support in all modes
-opt.mouse:append('a')
+opt.mouse:append("a")
 
 -- Enables vim to interact with the system clipboard
-opt.clipboard:append('unnamedplus')
+opt.clipboard:append("unnamedplus")
 
 -- Set whether you can edit the buffer
 opt.modifiable = true

@@ -108,7 +108,7 @@ language_server.eslint = function()
 		-- Modified root_dir function to handle global config
 		root_dir = function(fname)
 			-- First try to find a local ESLint config
-			local local_root = util.root_pattern("eslint.config.js", "eslint.config.mjs", "package.json")(fname)
+			local local_root = util.root_pattern("eslint.config.js", ".eslintrc.js", "package.json")(fname)
 
 			-- If no local config found, use the directory of the current file
 			-- This allows the global config to be used

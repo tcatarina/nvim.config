@@ -58,7 +58,7 @@ module.exports = [
   },
   // JavaScript/TypeScript files configuration
   {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
+    files: ["**/*.{js,mjs,cjs,ts,tsx,mts,cts}"],
     rules: {
       semi: ["error", "always"],
     },
