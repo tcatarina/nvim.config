@@ -19,6 +19,7 @@ return {
 					vue = { "prettier" },
 					markdown = { "prettier" },
 					lua = { "stylua" },
+					c = { "clang-format" },
 				},
 				format_on_save = {
 					lsp_fallback = true,
