@@ -20,12 +20,13 @@ return {
 					markdown = { "prettier" },
 					lua = { "stylua" },
 					c = { "clang-format" },
+					python = { "pyink" },
 				},
-				format_on_save = {
-					lsp_fallback = true,
-					async = false,
-					timeout_ms = 5000,
-				},
+				-- format_on_save = {
+				-- 	lsp_fallback = true,
+				-- 	async = false,
+				-- 	timeout_ms = 5000,
+				-- },
 			})
 
 			vim.keymap.set({ "n", "v" }, "<leader>mp", function()
